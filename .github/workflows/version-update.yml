@@ -111,6 +111,7 @@ jobs:
           git checkout -b ${{ env.BRANCH_NAME }}
           git status
           set +e
+          git add NeuroID.podspec
           git add Source/NeuroID/Info.plist
           git add Source/NeuroID/NIDParamsCreator.swift
           git commit -m "Update SDK to $PACKAGE_VERSION"
