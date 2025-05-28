@@ -23,14 +23,6 @@ For _fastlane_ installation instructions, see [Installing _fastlane_](https://do
 
 Run Schema Tests
 
-### ios update_version
-
-```sh
-[bundle exec] fastlane ios update_version
-```
-
-Update project version
-
 ### ios update_project_version
 
 ```sh
