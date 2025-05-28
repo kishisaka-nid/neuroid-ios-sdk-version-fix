@@ -80,8 +80,7 @@ jobs:
 
       - name: Update Current Version
         run: bundle exec fastlane update_project_version
-        env:
-          releaseType: ${{ inputs.version_update }}
+
 
       - name: Get Updated Version
         run: |
@@ -93,8 +92,7 @@ jobs:
         run: chmod +x ./Scripts/update_version.sh
 
       - name: run update_version script
-        run: |
-          PACKAGE_VERSION=$(bundle exec fastlane get_project_version | grep -o "SDK Version:.*" | sed "s/SDK Version: //" )
+        run:
           ./Scripts/update_version.sh $PACKAGE_VERSION Source/NeuroID/NIDParamsCreator.swift
 
       - name: Get previous release tag
