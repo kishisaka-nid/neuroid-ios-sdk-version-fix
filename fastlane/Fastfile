@@ -21,27 +21,30 @@ platform :ios do
     run_tests(scheme: "NeuroID")
   end
 
-  desc "Update project version"
-  lane :update_version do
-    version = version_bump_podspec(path: "NeuroID.podspec", version_number: ENV["newVersion"])
-    currentversion = get_version_number(
-    xcodeproj: "NeuroID.xcodeproj",
-    target: "NeuroID"
-    )
-    if currentversion != ENV["newVersion"]
-      increment_version_number(
-      version_number: ENV["newVersion"],      # specify specific version number (optional, omitting it increments patch version number)
-      xcodeproj: "./NeuroID.xcodeproj"  
-      )
-    else
-      UI.error "The project version is the same as the new version" 
-    end
-  end
+  # desc "Update project version"
+  # lane :update_version do
+  #   version = version_bump_podspec(path: "NeuroID.podspec", version_number: ENV["newVersion"])
+  #   currentversion = get_version_number(
+  #   xcodeproj: "NeuroID.xcodeproj",
+  #   target: "NeuroID"
+  #   )
+  #   if currentversion != ENV["newVersion"]
+  #     increment_version_number(
+  #     version_number: ENV["newVersion"],      # specify specific version number (optional, omitting it increments patch version number)
+  #     xcodeproj: "./NeuroID.xcodeproj"  
+  #     )
+  #   else
+  #     UI.error "The project version is the same as the new version" 
+  #   end
+  # end
 
   desc "Update Podfile and Plist Version"
   lane :update_project_version do
     version_bump_podspec(path: "NeuroID.podspec", bump_type: ENV["releaseType"])
-    increment_version_number(bump_type: ENV["releaseType"])
+    increment_version_number(
+      bump_type: ENV["releaseType"],
+      plist_path: "Source/NeuroID/Info.plist"
+    )
   end
 
   desc "Prints the version number"
