@@ -107,16 +107,16 @@ jobs:
 
       - name: Commit version changes
         run: |
-          git config --global user.email developer@neuro-id.com
+          git config --global user.email kurt.ishisaka@experian.com
           git config --global user.name neuroid-developer
           git checkout -b ${{ env.BRANCH_NAME }}
           git status
           set +e
+          git add SDKTest/Info.plist
+          git add SDKUITest/Info.plist
           git add NeuroID.podspec
           git add Source/NeuroID/Info.plist
           git add Source/NeuroID/NIDParamsCreator.swift
-          git add SDKTest/Info.plist
-          git add SDKUITest/Info.plist
           git commit -m "Update SDK to $PACKAGE_VERSION"
           git tag "v$PACKAGE_VERSION"
           git push --set-upstream origin ${{ env.BRANCH_NAME }}
